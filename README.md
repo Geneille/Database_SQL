@@ -1,11 +1,39 @@
 # Pewlett-Hackard-Analysis
 
-## Overview 
+## Overview & Objectives
 
 Pewlett Hackard is preparing and analyzing their employee database to determine the amount of employees that is retiring. A major part of the analysis is to determine the retiring employees per department and per title, and to identify potential candidates from their current employees list who can fill the roles of some of the exiting employees. The objectives of this project were:
 
 * to determine the number of retiring employees per title;
 * and to identify employees who are eligible to participate in a mentorship program. 
+
+## Resources
+
+* Data Tools/Language: PostgreSQL, Python, Jupyter Notebook, Visual Studio Code
+
+
+## Analysis
+
+Figure 1 below shows the ERD for the various data tables used in the analysis. This figure was used to make the necessary connections to extract the relevant information to complete the objectives. 
+
+  Figure 1
+  
+  ![image](https://user-images.githubusercontent.com/92636438/146693992-a4f5ebe9-929b-449a-ab65-0ee0314b768c.png)
+
+
+The following steps summarizes the method used to analyze the data. The full query language can be found in the employee_Database_challenge.sql file.
+
+1. Relevant employee data from the Employees table was extracted and joined with data from the Titles table on the primary key.
+2. The data was filtered on the birth_date to retrieve the employees who were born between 1952 and 1955 and sorted.
+3. The data was exported to the retirees_bytitle table and saved as a csv file. 
+4. As there were duplicate entirees in this new table, the data was filtered to include the most recent titles of the employees. This was achieved by using the DISTINCT ON statement to retrieve the first occurrence of the employee number (since the data was already sorted by employee number).
+5.  Retired employees no longer with the company was filtered from the data set and a new table, called Unique Titles, was created and the exported to a csv file after the data was sorted in ascending order by the employee number and descending order by the last date (i.e., to_date) of the most recent title.
+6.  A query was then written file to retrieve the number of employees by their most recent job title who are about to retire. This was achieved by retrieving the information from the unique_titles table, grouping the table by title, then finally sorting the count column in descending order.
+7.  The information was then stored in a new table, retiring_titles table.
+8.  To determine employees eligible for the mentorship program, relevant information from the Employees table, the Department Employee table and the Titles table was joined.
+9.  DISTINCT ON statement was used to retrieve the first occurrence of the employee number for each set of rows.
+10. The data was filter on the to_date to all the current employees, then on the birth_date column to get all the employees who was born in the year 1965.
+11. The data in this new table,  mentorship_eligibilty, was then ordered by the employee number before being exported as mentorship_eligibilty.csv
 
 ## Results
 
@@ -41,9 +69,9 @@ Pewlett Hackard is preparing and analyzing their employee database to determine 
 
 ## Summary
 
-1. 90398 roles are in urgent need to be filled  as the "silver tsunami" begins to make an impact. The SQL statement and output from postgres to determine this number is illustrated in Figure 1 below.
+1. 90398 roles are in urgent need to be filled  as the "silver tsunami" begins to make an impact. The SQL statement and output from postgres to determine this number is illustrated in Figure 2 below.
 
-  Figure 1: 
+  Figure 2: 
 
   <img width="278" alt="fig 4" src="https://user-images.githubusercontent.com/92636438/146672296-e87c5f9b-d84a-40b1-b4c7-1b296e9e964a.png">
 
