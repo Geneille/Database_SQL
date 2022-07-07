@@ -9,7 +9,7 @@ Pewlett Hackard is preparing and analyzing their employee database to determine 
 
 ## Resources
 
-* Data Tools/Language: PostgreSQL, Python, Jupyter Notebook, Visual Studio Code
+* Tools/Language: SQL, PostgreSQL, Python, Jupyter Notebook, Visual Studio Code
 
 
 ## Analysis
